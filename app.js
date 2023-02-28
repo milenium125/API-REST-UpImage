@@ -14,6 +14,7 @@ const { urlencoded } = require('body-parser');
 app.use(cors());
 app.use(express.json());
 app.use(urlencoded());
+app.use(express.static('/public'));
 
 //Configuracion de CORS
 app.use((req, res, next) =>{
