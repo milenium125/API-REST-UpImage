@@ -56,7 +56,7 @@ router.post('/uploading-files', upload.single('file'),(req, res) => {
    console.log(file_name);
     res.status(200).send({
         "file_name": file_name['fieldname']+mimeTpe,
-        "link": `https://up-image.onrender.com//image/${file_name['filename']}`
+        "link": `https://apirest-upimage.onrender.com/image/${file_name['filename']}`
     });
 
     console.log("Funcionando Metodo Post");
