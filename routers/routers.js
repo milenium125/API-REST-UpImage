@@ -31,7 +31,6 @@ router.get("/home", (req, res) => {
 router.get("/image/:id", async (req, res) => {
     res.contentType('file');
     let fullname_image = req.params.id;
-    // let name_image = fullname_image.split('.');
     let ext = fullname_image.split('.').pop();
     let ruta_image = path.resolve(`public/imagesUploads/${fullname_image}`);
     console.log('antes if')
@@ -39,30 +38,25 @@ router.get("/image/:id", async (req, res) => {
         console.log('despues if')
         res.setHeader('Content-disposition', 'attachment; filename=' + fullname_image);
         res.setHeader('Content-type', 'image/jpeg (.jpg, .jpeg, .jfif, .pjpeg, .pjp, .png)');  
-        res.sendFile(ruta_image)
-        //res.send('<div>Hola mundo</div>');
-        //console.log(__dirname);
+        res.sendFile(ruta_image);
     }else{
         res.setHeader('Content-disposition', 'attachment; filename= no-image.png');
         res.setHeader('Content-type', 'image/jpeg (.jpg, .jpeg, .jfif, .pjpeg, .pjp, .png)');
         console.log('no existe la imagen');
         const image_default = path.resolve('public/imagesUploads/no-image.jpg');
         res.sendFile(image_default);
-        //res.send('<div>Chao mundo</div>');
-        //console.log(__dirname);
     }
     
     console.log(ruta_image);
-    // res.status(200).send();
 });
 
-router.post('/uploading-files', upload.single('file'),(req, res) => { //, upload.single('file')
+router.post('/uploading-files', upload.single('file'),(req, res) => {
    var file_name = req.file || "name_file_proto";
    console.log('post');
    console.log(file_name);
     res.status(200).send({
         "file_name": file_name['fieldname']+mimeTpe,
-        "link": `https://apirest-upimage.onrender.com/image/${file_name['filename']}`
+        "link": `https://up-image.onrender.com//image/${file_name['filename']}`
     });
 
     console.log("Funcionando Metodo Post");
